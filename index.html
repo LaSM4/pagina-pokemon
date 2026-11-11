@@ -1,38 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mini PokédexWeb</title>
-    <!--Ponemos el framework que usaremos-->
+    <!-- Framework Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Importamos la fuente Pokemon Solid -->
-    <link href="https://fonts.cdnfonts.com/css/pokemon-solid" rel="stylesheet"> 
+    <!-- Fuente Pokemon Solid -->
+    <link href="https://fonts.cdnfonts.com/css/pokemon-solid" rel="stylesheet">
 </head>
-<body class="bg-gray-300">
+
+<body class="bg-gray-200 min-h-screen text-gray-800">
     <!-- Header Section -->
-    <header class="bg-red-500 p-4 flex items-center gap-2 shadow-lg">
-         <h1 class="text-3xl tracking-wide text-yellow-400" style="font-family: 'Pokemon Solid', sans-serif;">PokédexWeb</h1>
+    <header class="bg-red-600 p-4 shadow-lg flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <!-- Ícono Pokébola decorativa -->
+            <div
+                class="w-9 h-9 bg-white rounded-full border-2 border-gray-900 relative overflow-hidden shadow flex items-center justify-center">
+                <div class="absolute top-0 left-0 right-0 h-1/2 bg-red-600"></div>
+                <div class="absolute w-full h-1 bg-gray-900 top-1/2 -translate-y-1/2"></div>
+                <div class="w-3 h-3 bg-white rounded-full border-2 border-gray-900 z-10"></div>
+            </div>
+            <h1 class="text-3xl tracking-wide text-yellow-400 drop-shadow-[0_2px_3px_rgba(0,0,0,0.7)]"
+                style="font-family: 'Pokemon Solid', sans-serif;">PokédexWeb</h1>
+        </div>
+        <span
+            class="text-xs font-bold text-white bg-red-700/80 px-3 py-1 rounded-full shadow-inner hidden sm:inline-block">PokeAPI
+            v2</span>
     </header>
 
     <!-- Descripción -->
-<section class="max-w-xl mx-auto mt-6 text-center">
-    <p class="text-lg text-gray-700 mb-4 font-bold">
-        ¡Bienvenido a tu Pokédex! Busca información de cualquier Pokémon usando el nombre o el número. 
-    </p>
-</section>
+    <section class="max-w-xl mx-auto mt-6 text-center px-4">
+        <p class="text-lg text-gray-700 font-bold">
+            ¡Bienvenido a tu Pokédex! Busca información de cualquier Pokémon usando el nombre o el número.
+        </p>
+    </section>
 
     <!-- Barra de búsqueda -->
-     <div class="flex justify-center">
-        <input 
-        type="text number"
-        class="w-2/3 p-2 rounded-l border border-gray-400 focus:outline-none focus:ring-2 focus:ring-100"
-        id="searchInput">
-        <button class="bg-white-400 text-white p-2 rounded-r hover:bg-yellow-500 transition duration-300" id="searchButton"
-        id="searchButton">
-            Buscar
-        </button>
-     </div>
+    <div class="max-w-xl mx-auto mt-4 px-4">
+        <div class="flex shadow-md rounded-lg overflow-hidden">
+            <input type="text"
+                class="flex-1 p-3 bg-white border border-gray-300 rounded-l focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-800"
+                id="searchInput" placeholder="Ej: Pikachu o 25" autocomplete="off">
+            <button
+                class="bg-red-600 hover:bg-red-700 text-white font-bold px-5 py-3 rounded-r transition duration-300 flex items-center gap-2 cursor-pointer"
+                id="searchButton">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                <span>Buscar</span>
+            </button>
+        </div>
 
+        <!-- Sugerencias rápidas y aleatorio -->
+        <div class="flex flex-wrap items-center justify-center gap-2 mt-3 text-sm">
+            <span class="text-gray-600 text-xs font-semibold">Populares:</span>
+            <button
+                class="quick-btn px-2.5 py-1 bg-white hover:bg-yellow-100 text-gray-700 rounded-full border border-gray-300 text-xs font-semibold transition"
+                data-name="pikachu">Pikachu</button>
+            <button
+                class="quick-btn px-2.5 py-1 bg-white hover:bg-red-100 text-gray-700 rounded-full border border-gray-300 text-xs font-semibold transition"
+                data-name="charizard">Charizard</button>
+            <button
+                class="quick-btn px-2.5 py-1 bg-white hover:bg-blue-100 text-gray-700 rounded-full border border-gray-300 text-xs font-semibold transition"
+                data-name="greninja">Greninja</button>
+            <button
+                class="quick-btn px-2.5 py-1 bg-white hover:bg-purple-100 text-gray-700 rounded-full border border-gray-300 text-xs font-semibold transition"
+                data-name="gengar">Gengar</button>
+            <button id="randomButton"
+                class="px-3 py-1 bg-yellow-400 hover:bg-yellow-500 text-yellow-950 rounded-full font-bold text-xs shadow-sm transition flex items-center gap-1 cursor-pointer">
+                Aleatorio
+            </button>
+        </div>
+    </div>
+
+    <!-- Contenedor de la Ficha del Pokémon -->
+    <main id="pokemonContainer" class="max-w-xl mx-auto mt-6 px-4 pb-12"></main>
+
+    <!-- Archivo JavaScript -->
+    <script src="script.js"></script>
 </body>
-</html> 
+
+</html>
